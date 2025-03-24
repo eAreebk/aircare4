@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring & Control</title>
+    <link rel="shortcut icon" href="../Home/Assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../Home/style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="../Home/Assets/logo.png" alt="Logo">
+            <h1>Air Care</h1>
+        </div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html">About Project</a>
+            <a href="../index.html#IssuenSol">Issues & Solutions</a>
+            <a href="#control">Smart Control</a>
+            
+            <select id="first" onchange="updateSecond(); saveSelection(this);">  
+                <option value="">Select Block</option>  <!-- Default option -->
+                <option value="liaquat">Liaquat Block</option>
+                <option value="quaid">Quaid Block</option>
+                <option value="edhi">Edhi Block</option>
+            </select>
+
+            <!-- Second Dropdown: Select AC based on first dropdown -->
+            <select id="second" onchange="window.location.href = this.value"> <!-- Perform action directly -->
+                <option value="">Select AC</option>  
+            </select>
+        </div>
+
+
+    </nav>
+
+    <div class="title">
+        <h1>Remote Surveillance</h1>
+    </div>
+
+    <!-- Environmental Parameters Section -->
+    <h1 class="sub-title">Enviromental Parameters</h1>
+    <div class="container">
+        <div class="items">
+            <img src="./MnC Assets/Envir/temp.png" alt="Temp Pic">
+            <h3 class="reading">22°C</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Envir/Humidity.png" alt="hum pic">
+            <h3 class="reading">45%</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Envir/Dust.png" alt="dust pic">
+            <h3 class="reading">25 µg/m³</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Envir/fan.png" alt="fan">
+            <h3 class="reading">2000 RPM</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Envir/vibr.avif" alt="">
+            <h3 class="reading">No vibration detected</h3>
+        </div>
+    </div>
+
+    <!-- Electrical Parameters Section -->
+    <h1 class="sub-title">Electrical Parameters</h1>
+    <div class="container">
+        <div class="items">
+            <img src="./MnC Assets/Elec/volt.jpg" alt="volt pic">
+            <h3 class="reading">220V</h3>
+        </div>
+        <div class="items">
+            <h3 class="reading">12A</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Elec/power.jpeg" alt="">
+            <h3 class="reading">2500 w</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Elec/energy.png" alt="">
+            <h3 class="reading">2 kwh</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Elec/PF.png" alt="">
+            <h3 class="reading">0.8 PF</h3>
+        </div>
+        <div class="items">
+            <img src="./MnC Assets/Elec/Frequency.png" alt="">
+            <h3 class="reading">55 Hz</h3>
+        </div>
+    </div>
+
+    <div id="control" class="title">
+        <h1>Smart Control</h1>
+    </div>
+
+    <div class="container"> 
+        <span onclick="powerOn()" id="power-btn" class="power-btn-off"> </span>
+    </div>
+
+
+
+
+
+    <script>
+        function powerOn() {
+            const powerButton = document.querySelector('#power-btn');
+            powerButton.classList.toggle("power-btn-on");
+            powerButton.classList.toggle("power-btn-off");
+        }
+
+        function toggleMenu() {
+            var navLinks = document.getElementById("navLinks");
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+            }
+        }
+
+
+
+        
+
+           // Function to update second dropdown based on first dropdown selection
+        function updateSecond() {
+
+            
+            var first = document.getElementById("first").value; // Get the selected value of the first dropdown
+            var second = document.getElementById("second"); // Get the second dropdown
+            second.innerHTML = ""; // Clear previous options in the second dropdown
+
+            // Object to store options based on blocks
+            var options = {
+                liaquat: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 4", href: "../MonitoringnControl/monitor.html../AC/ac4.html" },
+                    { name: "AC 5", href: "../AC/ac5.html" }
+                ],
+                quaid: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" }
+                ],
+
+                edhi: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" }
+                ]
+            };
+
+            // Get the list of items based on first dropdown selection
+            var items = options[first];
+            if (items) {
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select AC";
+                defaultOption.value = "";
+                second.add(defaultOption);
+
+                // Add the options dynamically
+                items.forEach(function(item) {
+                    var option = document.createElement("option");
+                    option.text = item.name;
+                    option.value = item.href; // Set the href as the value for navigation
+                    second.add(option);
+                });
+            }
+        }
+
+
+
+    </script>
+
+</body>
+</html>

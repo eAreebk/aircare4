@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="shortcut icon" href="./Home/Assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./Home/style.css">
+</head>
+<body>
+
+        <nav class="navbarp">
+            <div class="logo-container">
+                <img src="./Home/Assets/logo.png" alt="Logo">
+                <h1>Air Care</h1>
+            </div>
+        
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <div class="nav-links" id="navLinks">
+                <a href="./index.html">About Project</a>
+                <a href="#IssuenSol">Issues & Solutions</a>
+                <a href="./Routes/routes.html">Login</a>
+            </div>
+        </nav>
+    
+
+
+    <div class="title">
+        <h1 >THE ENERGY MANAGEMENT AND PERFORMANCE SURVEILLANCE FOR THE AIR CONDITIONING SYSTEMS</h1>
+    </div>
+
+
+    <div class="container">
+        <div class="items">
+              <img src="./Home/Assets/Monitoring.png" alt="Monitoring Screen">
+              <h1>Remote Surveillance</h1>
+              <p>Remotely monitor physical parameters of the air-conditioner, such as temperature and voltage.</p>
+        </div>
+
+        <div class="items">
+              <img src="./Home/Assets/Controlling.png" alt="Controlling Pic">
+              <h1>Smart Control</h1>
+              <p>Smartly switch on/off air-conditioner by web-platform.</p>
+        </div>
+
+        <div class="items">
+              <img src="./Home/Assets/Alert.png" alt="Alert Phone">
+              <h1>Alert System</h1>
+              <p>Give alert whenever any parameter drop low, reaches its lowest, rises high, or hits the highest limit.</p>
+        </div>
+
+        <div class="items">
+              <img src=" ./Home/Assets/Safety.png" alt="Safety Hands">
+              <h1>Safety System</h1>
+              <p>Automatically turn off air-conditioner whenever any sensitive parameter reaches its lowest or hits the highest limit.</p>
+        </div>
+    </div>
+
+
+
+    <div id="IssuenSol" class="title">
+        <h1 >Air-Conditioner Issues & Thier Possible Reasons</h1>
+    </div>
+
+    
+    <div class="container">
+        <div class="items">
+                <h1>High Temperature</h1>
+                <h3> ~ Faulty compressor</h3>
+                <h3> ~ Dirty coils</h3>
+        </div>
+
+        <div class="items">
+                <h1>Voltage Fluctuation</h1>
+                <h3> ~ Grid instability</h3>
+                <h3> ~ Faulty wiring</h3>
+        </div>
+
+        <div class="items">
+                <h1>High Humidity</h1>
+                <h3> ~ Clogged drain </h3>
+                <h3> ~ Low airflow</h3>
+        </div>
+
+        <div class="items">
+                <h1>Excess Dust</h1>
+                <h3> ~ Dirty filters</h3>
+                <h3> ~ Poor ventilation</h3> 
+        </div>
+
+        <div class="items">
+                <h1>Abnormal Blower RPM</h1>
+                <h3> ~ Motor issue</h3>
+                <h3> ~ Capacitor failure</h3>
+        </div>
+
+        <div class="items">
+                <h1>Excess Vibration</h1>
+                <h3> ~ Loose parts</h3>
+                <h3> ~ Unbalanced blower</h3>
+            
+        </div>
+
+        <div class="items">
+                <h1>Coil Freezing</h1>
+                <h3> ~ Low refrigerant</h3>
+                <h3> ~ Airflow blockage</h3>
+        </div>
+    </div>
+
+
+
+  <script>
+            function toggleMenu() {
+            var navLinks = document.getElementById("navLinks");
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+            }
+                }
+  </script>
+
+
+
+
+
+    
+</body>
+</html>

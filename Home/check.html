@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Dropdown with Action</title>
+    <script>
+        // Function to update second dropdown based on first dropdown selection
+        function updateSecond() {
+            var first = document.getElementById("first").value; // Get the selected value of the first dropdown
+            var second = document.getElementById("second"); // Get the second dropdown
+            second.innerHTML = ""; // Clear previous options in the second dropdown
+
+            // Object to store options based on category (Fruits or Animals)
+            var options = {
+                Fruits: ["Apple", "Banana", "Orange"],
+                Animals: ["Cat", "Dog", "Elephant"]
+            };
+
+            // Get the list of items based on first dropdown selection
+            var items = options[first];
+            if (items) {
+                for (var i = 0; i < items.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = items[i]; // Set the option text
+                    second.add(option); // Add the option to the second dropdown
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- First Dropdown: Select Category (Fruits or Animals) -->
+    <select id="first" onchange="updateSecond()">  
+        <option value="">Select Category</option>  <!-- Default option -->
+        <option value="Fruits">Fruits</option>
+        <option value="Animals">Animals</option>
+    </select>
+
+    <!-- Second Dropdown: Select Item based on first dropdown -->
+    <select id="second" onchange="window.location.href = getRedirectUrl(this.value)"> <!-- Perform action directly -->
+        <option value="">Select Item</option>  <!-- Default option -->
+        <option value="Apple">Apple</option>
+        <option value="Banana">Banana</option>
+        <option value="Orange">Orange</option>
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Elephant">Elephant</option>
+    </select>
+
+    <script>
+        // Function to get the redirect URL based on the selected item
+        function getRedirectUrl(item) {
+            var actions = {
+                "Apple": "https://www.apple.com",
+                "Banana": "https://www.banana.com",
+                "Orange": "https://www.orange.com",
+                "Cat": "https://www.cat.com",
+                "Dog": "https://www.dog.com",
+                "Elephant": "https://www.elephant.com"
+            };
+            return actions[item] || "#"; // Default to '#' if no URL found
+        }
+    </script>
+
+</body>
+</html>
+

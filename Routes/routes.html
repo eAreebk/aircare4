@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring & Control</title>
+    <link rel="shortcut icon" href="../Home/Assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../Home/style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="../Home/Assets/logo.png" alt="Logo">
+            <h1>Air Care</h1>
+        </div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html">About Project</a>
+            <a href="../index.html#IssuenSol">Issues & Solutions</a>
+            
+             <select id="first" onchange="updateSecond()">  
+                <option value="">Select Block</option>  <!-- Default option -->
+                <option value="liaquat">Liaquat Block</option>
+                <option value="quaid">Quaid Block</option>
+                <option value="edhi">Edhi Block</option>
+             </select>
+
+             <select id="second" onchange="window.location.href = this.value"> 
+                <option value="" >Select AC</option>  
+             </select>
+        </div>
+    </nav>
+
+
+    <div class="title">
+        <h1>Remote Surveillance</h1>
+    </div>
+
+    
+        <h1 class="note">Please select desired block and its air conditioner</h1>
+
+
+
+    <script>
+        function powerOn() {
+            const powerButton = document.querySelector('#power-btn');
+            powerButton.classList.toggle("power-btn-on");
+            powerButton.classList.toggle("power-btn-off");
+        }
+
+        function toggleMenu() {
+            var navLinks = document.getElementById("navLinks");
+            if (navLinks.style.display === "flex") {
+                navLinks.style.display = "none";
+            } else {
+                navLinks.style.display = "flex";
+            }
+        }
+
+        // Function to update second dropdown based on first dropdown selection
+        function updateSecond() {
+              
+            
+
+            var first = document.getElementById("first").value; // Get the selected value of the first dropdown
+            var second = document.getElementById("second"); // Get the second dropdown
+            second.innerHTML = ""; // Clear previous options in the second dropdown
+
+            // Object to store options based on blocks
+            var options = {
+                liaquat: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 4", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 5", href: "../MonitoringnControl/monitor.html" }
+                ],
+                quaid: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" }
+                ],
+
+                edhi: [
+                    { name: "AC 1", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 2", href: "../MonitoringnControl/monitor.html" },
+                    { name: "AC 3", href: "../MonitoringnControl/monitor.html" }
+                ]
+            };
+
+            // Get the list of items based on first dropdown selection
+            var items = options[first];
+            if (items) {
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Select AC";
+                defaultOption.value = "";
+                second.add(defaultOption);
+
+                // Add the options dynamically
+                items.forEach(function(item) {
+                    var option = document.createElement("option");
+                    option.text = item.name;
+                    option.value = item.href; // Set the href as the value for navigation
+                    second.add(option);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
